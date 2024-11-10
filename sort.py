@@ -9,6 +9,7 @@ def bubble_sort(mas):
                 unordered=True
         n-=1
     return mas
+
 def select_sort(mas):
     for i in range(len(mas)-1):
         imin=i
@@ -17,6 +18,7 @@ def select_sort(mas):
                 imin=j
         mas[i],mas[imin]=mas[imin],mas[i]
     return mas
+
 def insertion_sort(mas):
     for i in range(1,len(mas)):
         tmp=mas[i]
@@ -26,4 +28,42 @@ def insertion_sort(mas):
             j-=1
         mas[j+1]=tmp
     return mas
-print(insertion_sort([3,8,5,4]))
+
+def quick_sort(mas,low,high):
+    if low<high:
+        pivot_index=partition(mas,low,high)
+        quick_sort(mas,low,pivot_index-1)
+        quick_sort(mas,pivot_index+1,high)
+def partition(mas,low,high):
+    pivot=mas[low]
+    i=low+1
+    for j in range(low+1,high+1):
+        if mas[j]<=pivot:
+            mas[i],mas[j]=mas[j],mas[i]
+            i+=1
+    mas[low],mas[i-1] = mas[i-1],mas[low]
+    return i-1
+
+def cocktailSort(mas):
+    n = len(mas)
+    swapped = True
+    start = 0
+    end = n-1
+    while swapped==True:
+        swapped = False
+        for i in range (start, end):
+            if mas[i] > mas[i+1] :
+                mas[i], mas[i+1]= mas[i+1], mas[i]
+                swapped=True
+        if swapped==False:
+            break
+        swapped = False
+        end = end-1
+        for i in range(end-1, start-1,-1):
+            if mas[i] > mas[i+1]:
+                mas[i], mas[i+1] = mas[i+1], mas[i]
+                swapped = True
+        start = start+1
+    return mas
+
+print(cocktailSort([5,1,4,2,8,0,2]))
