@@ -1,3 +1,6 @@
+from sys import setrecursionlimit as lim
+lim(3000)
+
 def bubble_sort(mas):
     n=len(mas)
     unordered=True
@@ -65,5 +68,3 @@ def cocktailSort(mas):
                 swapped = True
         start = start+1
     return mas
-
-print(cocktailSort([5,1,4,2,8,0,2]))
